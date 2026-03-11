@@ -2,7 +2,6 @@ import delivery from "../assets/images/FeatureCardImages/delivery.png";
 import food from "../assets/images/FeatureCardImages/food.png";
 import free from "../assets/images/FeatureCardImages/free.png";
 import user1 from "../assets/images/Icons/user1.png";
-import user2 from '../assets/images/Icons/user2.png'
 export const dataFeatureSection = [
   {
     id: 1,
@@ -27,7 +26,7 @@ export const dataFeatureSection = [
 export const NewPizzas = [
   {
     id: 1,
-    name: "Чоризо фреш",
+    title: "Чоризо фреш",
     desc: "Острые колбаски чоризо из цыпленка, зеленый перец, моцарелла, томатный соус",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c42f704740cae3253e3af6994dc.avif",
@@ -35,7 +34,7 @@ export const NewPizzas = [
   },
   {
     id: 2,
-    name: "Сырная",
+    title: "Сырная",
     desc: "Моцарелла, сыры чеддер и пармезан, соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c3abfda7669b8fdf577f86b07a9.avif",
@@ -43,7 +42,7 @@ export const NewPizzas = [
   },
   {
     id: 3,
-    name: "Чикен бомбони",
+    title: "Чикен бомбони",
     desc: "Наша легендарная пицца. Куриные кусочки, перец, соус сладкий чили, моцарелла, смесь сыров, лук, соус Альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/019b2193c0b4786d8b688fddde3fa8de.avif",
@@ -54,7 +53,7 @@ export const NewPizzas = [
 export const pizzas = [
   {
     id: 1,
-    name: "Чоризо фреш",
+    title: "Чоризо фреш",
     desc: "Острые колбаски чоризо из цыпленка, зеленый перец, моцарелла, томатный соус",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c42f704740cae3253e3af6994dc.avif",
@@ -62,7 +61,7 @@ export const pizzas = [
   },
   {
     id: 2,
-    name: "Сырная",
+    title: "Сырная",
     desc: "Моцарелла, сыры чеддер и пармезан, соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c3abfda7669b8fdf577f86b07a9.avif",
@@ -70,7 +69,7 @@ export const pizzas = [
   },
   {
     id: 3,
-    name: "Чикен бомбони",
+    title: "Чикен бомбони",
     desc: "Наша легендарная пицца. Куриные кусочки, перец, соус сладкий чили, моцарелла, смесь сыров, лук, соус Альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/019b2193c0b4786d8b688fddde3fa8de.avif",
@@ -78,7 +77,7 @@ export const pizzas = [
   },
   {
     id: 4,
-    name: "Чикен бургер",
+    title: "Чикен бургер",
     desc: "Цыпленок, томаты, бургер соус, чеснок, моцарелла, фирменный соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c33ec9b7190911c2a7b133ee389.avif",
@@ -86,7 +85,7 @@ export const pizzas = [
   },
   {
     id: 5,
-    name: "Чилл Грилл",
+    title: "Чилл Грилл",
     desc: "Двойная порция цыпленка, соленые огурчики, красный лук, соус гриль тейсти, моцарелла, чеснок, фирменный соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c44a523772c9f60f7fe864fdccc.avif",
@@ -94,7 +93,7 @@ export const pizzas = [
   },
   {
     id: 6,
-    name: "Ветчина и сыр",
+    title: "Ветчина и сыр",
     desc: "Ветчина из цыпленка, моцарелла и соус альфредо — просто и со вкусом",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c3e232d72f99537c7c7dc9cc78c.avif",
@@ -102,7 +101,7 @@ export const pizzas = [
   },
   {
     id: 7,
-    name: "Двойной цыпленок",
+    title: "Двойной цыпленок",
     desc: "Двойная порция цыпленка, моцарелла, соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c3ee08e7147b2b1a38bc2f25f39.avif",
@@ -110,7 +109,7 @@ export const pizzas = [
   },
   {
     id: 8,
-    name: "Четыре сезона",
+    title: "Четыре сезона",
     desc: "Мно-о-ого моцареллы, ветчина из цыпленка, пикантная пепперони, кубики брынзы, томаты, шампиньоны, томатный соус, итальянские травы",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c479e6e7430b77b3b72a73d0416.avif",
@@ -118,7 +117,7 @@ export const pizzas = [
   },
   {
     id: 9,
-    name: "Пепперони с грибами",
+    title: "Пепперони с грибами",
     desc: "Пикантная пепперони, моцарелла, шампиньоны, соус альфредо",
     image:
       "https://media.dodostatic.net/image/r:584x584/01995c5c72bd753195afc081e4a14b83.avif",
@@ -267,7 +266,7 @@ export const decert = [
     id: 1,
     image:
       "https://media.dodostatic.net/image/r:584x584/0198f16a41917609920df1aac36144f6.avif",
-    title: "Чизкейк карамельный с арахисом",
+    title: "Чизкейк с арахисом",
     price: "1 490",
   },
   {
@@ -288,7 +287,7 @@ export const decert = [
     id: 4,
     image:
       "https://media.dodostatic.net/image/r:584x584/0198f169f1a6747db40d0d1fae046c93.avif",
-    title: "Чизкейк Банановый с шоколадным печеньем",
+    title: "Чизкейк Банановый",
     price: "1490",
   },
   {

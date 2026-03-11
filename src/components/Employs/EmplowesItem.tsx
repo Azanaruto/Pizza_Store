@@ -1,5 +1,11 @@
 import styles from './emplowes.module.css'
-const EmplowesItem = ({name,position,image}) => {
+interface propsEmployes {
+  name:string;
+  position:string;
+  image:string
+}
+const EmplowesItem = ({name,position,image}:propsEmployes) => {
+
   return (
     <div>
         <p className= {styles.nameEmplowes}>{name}</p>
