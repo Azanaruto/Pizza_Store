@@ -1,0 +1,26 @@
+.main {
+  background-color: $bg-color;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap:50px;
+  .titleMain {
+    color: $text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 64px;
+    font-weight: bold;
+    text-transform: uppercase;
+    span {
+      color: $text-orange;
+    }
+  }
+  .pizzaMain {
+    max-width: 500px;
+    filter: drop-shadow(30px 50px 80px rgba(0, 0, 0, 0.15));
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      transform: scale(1) rotate(5deg);
+    }
+  }
+}

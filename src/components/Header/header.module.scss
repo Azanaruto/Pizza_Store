@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom:  1px solid $light-grey;
+  padding: 20px;
+  background: $bg-color;
+  .logo {
+    width: 180px;
+    height:80px;
+  }
+  nav {
+    display: flex;
+    gap: 50px;
+    a {
+      text-decoration: none;
+      opacity: 0.7;
+      color: $pure-black;
+      font-size: 1.2rem;
+      font-weight: $fs-700;
+      transition: all 0.6s;
+      letter-spacing: 2px;
+      font-family: "DM Sans";
+      font-style: normal;
+      transition: all 0.5s;
+      &:hover {
+        color:$accent-color-2
+      }
+    }
+  }
+}

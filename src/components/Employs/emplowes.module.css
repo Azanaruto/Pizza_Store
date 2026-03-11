@@ -1,0 +1,17 @@
+.CartsImployes {
+  display: flex;
+  gap:90px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.nameEmplowes {
+  text-align: center;
+}
+.positionEmplowes {
+  margin-top: 10px;
+  text-align: center;
+}
+.emplowesImage {
+  margin-top: 10px;
+}

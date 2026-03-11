@@ -1,0 +1,15 @@
+.about {
+  .title {
+    font-size: 52px;
+    font-weight: 900;
+    color: $text-orange;
+  }
+  .desc {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 26px;
+    width: 70%;
+    color:$text;
+    opacity: 0.5;
+  }
+}

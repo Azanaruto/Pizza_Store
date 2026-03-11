@@ -1,0 +1,24 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  .newTitle {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: $text;
+    margin-bottom: 40px;
+    span {
+      color: $text-orange;
+      position: relative;
+      display: inline-block;
+    }
+  }
+  .subtitle {
+    font-size: 16px;
+    color: $text;
+    max-width: 350px;
+    text-align: center;
+    line-height: 1.5;
+    opacity: 0.5;
+  }
+}

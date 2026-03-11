@@ -1,0 +1,39 @@
+.newCarts {
+  display: flex;
+  margin-top: 50px;
+  column-gap: 130px;
+  row-gap: 100px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.newCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  .wrapperImage {
+    cursor: pointer;
+    z-index: 2;
+    .NewcartImage {
+      width: 200px;
+    }
+  }
+  .newCartTitle {
+    font-weight: 700;
+    color: $text;
+    opacity: 0.5;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 148%;
+    height: 115%;
+    top: -24px;
+    border: 2px dashed $text-orange;
+    border-radius: 50%;
+  }
+  .btn {
+    cursor: pointer;
+  }
+}

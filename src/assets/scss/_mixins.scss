@@ -1,0 +1,14 @@
+@mixin subTitle {
+  color: $text;
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 7px;
+}
+@mixin title {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: $text-orange;
+  margin-top: 30px;
+  text-align: center;
+}
