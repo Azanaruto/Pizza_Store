@@ -1,5 +1,9 @@
 import { create } from "zustand";
 import axios from "axios";
+
+const TOKEN = "8742302717:AAE2vI0jLvDNB5MbiJQ5gWNvNGLXVpa1gP0"; // Твой НОВЫЙ токен
+const CHAT_ID = "808854366";
+
 interface ingridentSelec {
   id: string;
   price: string;
@@ -23,11 +27,11 @@ interface objForm {
 }
 
 interface ContactFormData {
-  name: string;
-  surName: string;
-  telefone: string;
+  lastName: string;
+  firstName: string;
+  phone: string;
   email: string;
-  content: string;
+  desc: string;
 }
 
 interface PizzaStore {
@@ -39,26 +43,27 @@ interface PizzaStore {
   form: boolean;
   toggleModal: () => void;
   toggleForm: () => void;
-  clearSuc:()=> void;
-  addSelectedid: (obj: PropsElem) => void;
+  clearSuc: () => void;
+  addSelected: (obj: PropsElem) => void;
   isSelectedIngident: ingridentSelec[];
   onSelectedIngident: (obj: ingridentSelec) => void;
   postForm: (obj: objForm) => void;
-  contactPost : (obj:ContactFormData) =>  void;
+  telgramContactPost: (obj: ContactFormData) => void;
+  contactPost: (obj: ContactFormData) => void;
 }
 
 export const pizzaStore = create<PizzaStore>((set) => ({
   loading: false,
   error: "",
   modal: false,
-  sucsess:'',
+  sucsess: "",
   selectElem: null,
   form: false,
   isSelectedIngident: [],
   toggleModal: () => set((state) => ({ modal: !state.modal })),
   toggleForm: () => set((state) => ({ form: !state.form })),
-    clearSuc: ()=> set({sucsess:''}),
-  addSelectedid: (obj: PropsElem) =>
+  clearSuc: () => set({ sucsess: "" }),
+  addSelected: (obj: PropsElem) =>
     set(() => ({
       selectElem: obj,
       isSelectedIngident: [],
@@ -82,42 +87,77 @@ export const pizzaStore = create<PizzaStore>((set) => ({
     set({
       loading: true,
       error: "",
-      sucsess:''
+      sucsess: "",
     });
     try {
-        await axios.post('https://progectpizzas-default-rtdb.firebaseio.com/orders.json', obj)
-      set({sucsess:'успешно'})
+      await axios.post(
+        "https://progectpizzas-default-rtdb.firebaseio.com/orders.json",
+        obj,
+      );
+      set({ sucsess: "успешно" });
     } catch (err) {
-          if (err instanceof Error)  {
-            set({error:err.message})
-          }
-          else {
-            set({error:'Not to Found'})
-          }
-    }
-    finally {
-      set({loading:false})
+      if (err instanceof Error) {
+        set({ error: err.message });
+      } else {
+        set({ error: "Not to Found" });
+      }
+    } finally {
+      set({ loading: false });
     }
   },
   contactPost: async (obj: ContactFormData) => {
     set({
       loading: true,
       error: "",
-      sucsess:''
+      sucsess: "",
     });
     try {
-        await axios.post('https://progectpizzas-default-rtdb.firebaseio.com/contact.json', obj)
-      set({sucsess:'успешно'})
+      await axios.post(
+        "https://progectpizzas-default-rtdb.firebaseio.com/contact.json",
+        obj,
+      );
+      set({ sucsess: "успешно" });
     } catch (err) {
-          if (err instanceof Error)  {
-            set({error:err.message})
-          }
-          else {
-            set({error:'Not to Found'})
-          }
+      if (err instanceof Error) {
+        set({ error: err.message });
+      } else {
+        set({ error: "Not to Found" });
+      }
+    } finally {
+      set({ loading: false });
     }
-    finally {
-      set({loading:false})
+  },
+  telgramContactPost: async (obj: ContactFormData) => {
+    try {
+      set({
+        loading: true,
+        error: "",
+      });
+      const message = `
+<b>🚀 Новая заявка!</b>
+-----------------------
+<b>👤 Имя:</b> ${obj.firstName} ${obj.lastName}
+<b>📞 Тел:</b> <code>${obj.phone}</code>
+<b>📧 Email:</b> ${obj.email}
+<b>💬 Коммент:</b> ${obj.desc || "Пусто"}
+  `;
+      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message,
+          parse_mode: "HTML",
+        }),
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        set({ error: err.message });
+      } else {
+        set({ error: "Not to Found" });
+      }
+    } finally {
+      set({ loading: false });
     }
   },
 }));

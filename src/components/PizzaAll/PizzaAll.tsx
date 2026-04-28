@@ -3,20 +3,22 @@ import { pizzas } from "../../data/data";
 import Carts from "../Carts/Carts";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import styles from "./pizzaAll.module.scss";
+import { useTranslation } from "react-i18next";
 
 const PizzaAll = forwardRef<HTMLDivElement>((_,ref) => {
+  const {t} = useTranslation()
   return (
     <div className={styles.set}>
       <div className="container">
         <SectionTitle
-          title={"Наше"}
-          subtitle={"Классическое Меню"}
+          title={t('pizzaTitle')}
+          subtitle={t('PizzasubTitle')}
           desc={
-            "  Мы используем только фермерские сыры и тесто на живой закваске, которое созревает 24 часа для идеального хруста."
+            t('PizzaDesc')
           }
         />
       </div>
-        <h2 className= {styles.title} ref={ref}>Пиццы</h2>
+        <h2 className= {styles.title} ref={ref}>{t('CategoriesTitle.pizza')}</h2>
      <Carts  arr={pizzas}/>
     </div>
   );

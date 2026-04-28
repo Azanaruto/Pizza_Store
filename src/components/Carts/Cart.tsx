@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { pizzaStore } from "../../Zustand/Pizza_Store";
 import styles from "./Carts.module.scss";
 import Button from "@mui/material/Button";
@@ -17,7 +18,8 @@ interface propsProduct {
 }
 
 const Cart = ({ name, image, elem }: propsProduct) => {
-  const { toggleModal, addSelectedid } = pizzaStore();
+  const { toggleModal, addSelected } = pizzaStore();
+const {t} = useTranslation()
   return (
     <div className={styles.newCard}>
       <div className={styles.wrapperImage}>
@@ -27,7 +29,7 @@ const Cart = ({ name, image, elem }: propsProduct) => {
           className={styles.NewcartImage}
           onClick={() => {
             toggleModal();
-            addSelectedid(elem);
+            addSelected(elem);
           }}
         />
       </div>
@@ -38,11 +40,11 @@ const Cart = ({ name, image, elem }: propsProduct) => {
         sx={{ color: "#FF4D00;" }}
         onClick={() => {
           toggleModal();
-          addSelectedid(elem);
+          addSelected(elem);
         }}
       >
-        {" "}
-        Заказать
+        {t("Order")}
+        
       </Button>
     </div>
   );

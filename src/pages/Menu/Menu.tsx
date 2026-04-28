@@ -9,9 +9,10 @@ import Categories from "../../components/Categories/Categories";
 import DrinksAll from "../../components/DrinksAll/DrinksAll";
 import SnacksAll from "../../components/SnacksAll/SnacksAll";
 import DecertAll from "../../components/DecertAll/DecertAll";
+import { useTranslation } from "react-i18next";
 const Menu = () => {
   const sectionRefc = useRef<Record<string, HTMLDivElement | null>>({});
-
+  const {t} = useTranslation()
   const scrollToSection = (category: string) => {
     const element = sectionRefc.current[category];
     if (element) {
@@ -28,7 +29,7 @@ const Menu = () => {
         <div className="container">
           <div className={styles.content}>
             <h1 className={styles.titleMain}>
-              Итальянский <span>вкус</span> и молниеносная <span>доставка</span>
+              {t('menuSection.title')}
             </h1>
             <img
               src="https://media.dodostatic.net/image/r:584x584/01995c6c934b756d9ffa69f3504fc150.avif"
@@ -41,10 +42,10 @@ const Menu = () => {
       <FeaturesSection />
       <div className="container">
         <SectionTitle
-          title={"Наши"}
-          subtitle={"Горячие Новинки"}
+          title={t('menuSection.newTitle')}
+          subtitle={t("menuSection.newSubTitle")}
           desc={
-            "Попробуйте уникальные вкусы этого сезона, которые мы разработалиспециально для истинных гурманов."
+            t('menuSection.newDesc')
           }
         />
       </div>

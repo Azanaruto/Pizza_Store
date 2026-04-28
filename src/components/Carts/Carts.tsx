@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import FormModal from '../FormModal/FormModal';
 import Modals from '../Modal/Modal';
 import Cart from './Cart';
@@ -15,13 +16,13 @@ interface CartsProps {
     arr: propsCatrs[];
 }
 const Carts = ({arr}:CartsProps) => {
-
+  const {t} = useTranslation()
   return (
     <div className="container">
       {
         <div className={styles.newCarts}>
           {arr.map((elem) => (
-            <Cart key={elem.id} name={elem.title} image={elem.image} elem = {elem} />
+            <Cart key={elem.id} name={t(elem.title)} image={elem.image} elem = {elem} />
           ))}
         </div>
       }

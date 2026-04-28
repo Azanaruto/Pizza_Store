@@ -1,17 +1,19 @@
 import { Button } from "@mui/material";
 import styles from "./categories.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface propsCategories {
   scrollToSection:(str:string)=> void
 }
 
 const Categories = ({scrollToSection}:propsCategories) => {
+  const {t} = useTranslation()
   return (
     <div className={styles.category}>
-      <Button onClick={()=> scrollToSection('Пиццы')}>Питцы</Button>
-      <Button onClick={()=> scrollToSection('Закуски')}>Закуски</Button>
-      <Button onClick={()=> scrollToSection('Десерты')}>Десерты</Button>
-      <Button onClick={()=> scrollToSection('Напитки')}>Напитки</Button>
+      <Button onClick={()=> scrollToSection('Пиццы')}>{t("CategoriesTitle.pizza")}</Button>
+      <Button onClick={()=> scrollToSection('Закуски')}>{t("CategoriesTitle.snacks")}</Button>
+      <Button onClick={()=> scrollToSection('Десерты')}>{t("CategoriesTitle.desert")}</Button>
+      <Button onClick={()=> scrollToSection('Напитки')}>{t("CategoriesTitle.drinks")}</Button>
     </div>
     
   );

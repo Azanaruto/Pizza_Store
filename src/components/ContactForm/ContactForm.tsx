@@ -1,143 +1,122 @@
-import { Box, Checkbox, TextField, Button, Alert } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
+import { Button } from "@mui/material";
 import styles from "./contactForm.module.scss";
-import { useEffect, useState } from "react";
 import { pizzaStore } from "../../Zustand/Pizza_Store";
-
-const label = { slotProps: { input: { "aria-label": "Checkbox demo" } } };
-
-interface ContactFormData {
-  name: string;
-  surName: string;
-  telefone: string;
+import { useTranslation } from "react-i18next";
+interface MyForm {
+  firstName: string;
+  lastName: string;
+  phone: string;
   email: string;
-  content: string;
+  desc: string;
 }
 
-const inialObject = {
-  name: "",
-  surName: "",
-  telefone: "",
-  email: "",
-  content: "",
-};
-
 const ContactForm = () => {
-  const [contactForm, setContatForm] = useState<ContactFormData>(inialObject);
-  const [error, setError] = useState("");
-  const { contactPost, sucsess, clearSuc } = pizzaStore();
-  const [checked, setChecced] = useState(false);
-
- const isDisabled =
-  !contactForm.name.trim() ||
-  !contactForm.email.trim() ||
-  !contactForm.surName.trim() ||
-  !contactForm.telefone.trim() ||
-  !contactForm.content.trim() ||
-  !checked;
-
-  const handleSubmit = () => {
-    setError("");
-    if (isNaN(+contactForm.telefone)) {
-      setError("Прошу написат номер коректно без букв и дефисов");
-      return;
-    }
-    contactPost(contactForm);
-    setContatForm(inialObject);
+  const { telgramContactPost } = pizzaStore();
+  const {t}  = useTranslation()
+  const {
+    register,
+    reset,
+    handleSubmit,
+    control,
+    formState: { errors, isValid },
+  } = useForm<MyForm>({
+    mode: "onBlur",
+  });
+  const OnSumbit = (data: MyForm) => {
+      console.log(data)
+     telgramContactPost(data)
+    reset();
   };
 
-  useEffect(() => {
-    if (!sucsess) return;
-    const interval = setTimeout(() => {
-      clearSuc();
-    }, 3000);
-    return () => clearTimeout(interval);
-  }, [sucsess, clearSuc]);
-
-  useEffect(() => {
-    if (!error) return;
-    const interval = setTimeout(() => {
-      setError("");
-    }, 3000);
-    return () => clearTimeout(interval);
-  }, [error]);
-
   return (
-    <form action="" className={styles.form}>
-       <Box>
-          {error && <Alert severity="error">{error}</Alert>}
-          {sucsess && <Alert severity="success">{sucsess}</Alert>}
-        </Box>
-      <Box sx={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-        <TextField
-          id="outlined-basic"
-          value={contactForm.name}
-          label="Имя"
-          variant="outlined"
-          onChange={(e) => {
-            setContatForm((prev) => ({
-              ...prev,
-              name: e.target.value,
-            }));
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="Фамилия"
-          value={contactForm.surName}
-          variant="outlined"
-          onChange={(e) => {
-            setContatForm((prev) => ({
-              ...prev,
-              surName: e.target.value,
-            }));
-          }}
-        />
-      </Box>
-      <Box sx={{ display: "flex", gap: "10px" }}>
-        <TextField
-          id="outlined-basic"
-          label="Телефон"
-          value={contactForm.telefone}
-          variant="outlined"
-          onChange={(e) => {
-            setContatForm((prev) => ({
-              ...prev,
-              telefone: e.target.value,
-            }));
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="email"
-          value={contactForm.email}
-          variant="outlined"
-          onChange={(e) => {
-            setContatForm((prev) => ({
-              ...prev,
-              email: e.target.value,
-            }));
-          }}
-        />
-      </Box>
-      <p className={styles.desc}>Вопрос</p>
-      <textarea
-        name=""
-        id=""
-        value={contactForm.content}
-        className={styles.contactContent}
-        onChange={(e) => {
-          setContatForm((prev) => ({
-            ...prev,
-            content: e.target.value,
-          }));
-        }}
-      ></textarea>
-      <div className="">
-        <Checkbox {...label} onChange={(e) => setChecced(e.target.checked)} />
-        <span>Я согласен на обработку моих персональных данных*</span>
+    <form className={styles.form} onSubmit={handleSubmit(OnSumbit)}>
+      <div className={styles.top}>
+        <label className="">
+          <span className={styles.errorSpan}>
+            {errors.firstName && errors.firstName.message}
+          </span>
+          <input
+            {...register("firstName", {
+              required: `${t("form.firstName.required")}`,
+              minLength: {
+                value: 3,
+                message: `${t("form.firstName.minLength")}`,
+              },
+            })}
+            type="text"
+            placeholder= {t("form.firstName.placeholder")}
+          />
+        </label>
+        <label className="">
+          <span className={styles.errorSpan}>
+            {errors.lastName && errors.lastName.message}
+          </span>
+          <input
+            type="text"
+            {...register("lastName", {
+              required: `${t("form.lastName.required")}`,
+            })}
+            placeholder= {t("form.lastName.placeholder")}
+          />
+        </label>
       </div>
-      <Button variant="contained" disabled={isDisabled} onClick={handleSubmit}>
-        Отправит
+      <div className={styles.bottom}>
+        <label>
+          <span className={styles.errorSpan}>
+            {errors.phone && errors.phone.message}
+          </span>
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: `${t("form.phone.required")}`,
+              minLength: {
+                value: 18,
+                message: `${t("form.phone.minLength")}`,
+              },
+              
+            }}
+            render={({ field }) => (
+              <PatternFormat
+              {...field}
+                format="+7 (###) ### - ## - ##"
+                mask="_"
+                placeholder="+7 (707)-360-89-48"
+              />
+            )}
+          ></Controller>
+        </label>
+        <label>
+          <span className={styles.errorSpan}>
+            {errors.email && errors.email.message}
+          </span>
+          <input
+            {...register("email", {
+              required: `${t("form.email.required")}`,
+              pattern: {
+                value: /^[A-Z0-9.]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: `${t("form.email.pattern")}`,
+              },
+            })}
+            type="text"
+            placeholder= {t("form.email.placeholder")}
+          />
+        </label>
+      </div>
+      <textarea
+        {...register("desc", {
+          required: `${t("form.desc.required")}`,
+          minLength: {
+            value: 10,
+            message: `${t("form.desc.minLength")}`
+          },
+        })}
+        className={styles.contactContent}
+      ></textarea>
+      <Button type="submit" variant="contained" disabled={!isValid}>
+        {t('form.submit')}
       </Button>
     </form>
   );

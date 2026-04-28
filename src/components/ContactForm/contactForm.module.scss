@@ -1,13 +1,51 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+  padding-top: 20px;
   align-items: start;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .errorSpan {
+    font-size: 12px;
+    color: #ef4444;
+    height: 18px;
+    margin-bottom: 4px; 
+ 
+  }
+  input {
+    padding: 16px 12px;
+    font-size: 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #1e293b;
+  }
+
+  .top {
+    display: flex;
+    gap: 10px;
+  }
+  .bottom {
+    display: flex;
+    gap: 10px;
+  }
   .contactContent {
     width: 600px;
     height: 300px;
     resize: none;
     padding: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background-color: #f8fafc;
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .desc {
     font-size: 20px;

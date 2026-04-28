@@ -1,13 +1,14 @@
+import { useTranslation } from "react-i18next";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import styles from "./contacts.module.scss";
 const Contacts = () => {
+  const {t} = useTranslation()
   return (
     <div>
       <div className="container">
-        <h1 className={styles.title}>Контакты</h1>
+        <h1 className={styles.title}>{t('contacts.title')}</h1>
         <p className={styles.desc}>
-          Если у вас есть вопросы и предложения или вам нужна информация о
-          заведении, вы можете легко связаться с нами.
+            {t("contacts.desc")}
         </p>
          <ContactForm/>
       </div>

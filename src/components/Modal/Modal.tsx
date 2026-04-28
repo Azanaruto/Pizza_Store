@@ -2,6 +2,7 @@ import { Modal, Box, Button } from "@mui/material";
 import { pizzaStore } from "../../Zustand/Pizza_Store";
 import styles from "./Modal.module.scss";
 import ModalCart from "./ModalCart";
+import { useTranslation } from "react-i18next";
 const style = {
   position: "absolute",
   top: "50%",
@@ -15,6 +16,7 @@ const style = {
 };
 
 const Modals = () => {
+  const  {t} = useTranslation()
   const { modal, toggleModal, selectElem, isSelectedIngident,toggleForm } = pizzaStore();
   const priceIngridents =
     isSelectedIngident.length >= 1
@@ -45,12 +47,12 @@ const Modals = () => {
       >
         <img src={selectElem?.image} alt="" />
         <div className={styles.text}>
-          <h3 className={styles.title}>{selectElem?.title}</h3>
-          <p className={styles.desc}>{selectElem?.desc}</p>
-          <p className={styles.subtitle}>Добавит по вкусу </p>
+          <h3 className={styles.title}>{t(selectElem?.title)}</h3>
+          <p className={styles.desc}>{t(selectElem?.desc)}</p>
+          <p className={styles.subtitle}>{t("taste")} </p>
           {selectElem?.desc && <ModalCart />}
           <Button sx={{ marginTop: 10 }} variant="contained" color="success" onClick={toggleForm}>
-            Заказать {" "}
+            {t('Order')}  {" "}
             {priceIngridents
               ? (selectElem?.price ? +selectElem?.price: 0 ) + priceIngridents
               : selectElem?.price}
